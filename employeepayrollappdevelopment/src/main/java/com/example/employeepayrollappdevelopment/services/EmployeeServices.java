@@ -14,17 +14,17 @@ public class EmployeeServices {
     @Autowired
     private EmployeeRepository employeeRepository;
 
-    // Create Employee
+    // Create Employee and save it to database.
     public Employee saveEmployee(Employee employee) {
         return employeeRepository.save(employee);
     }
 
-    // Get Employee by ID
+    // Get Employee by ID.
     public Optional<Employee> getEmployeeById(Long id) {
         return employeeRepository.findById(id);
     }
 
-    // List All Employees
+    // List All Employees in the database 
     public List<Employee> getAllEmployees() {
         return employeeRepository.findAll();
     }
