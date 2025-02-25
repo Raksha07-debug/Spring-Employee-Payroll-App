@@ -1,5 +1,7 @@
-package com.example.employeepayrollappdevelopment;
+package com.example.employeepayrollappdevelopment.services;
 
+import com.example.employeepayrollappdevelopment.EmployeeRepository;
+import com.example.employeepayrollappdevelopment.model.Employee;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

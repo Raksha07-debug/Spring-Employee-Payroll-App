@@ -1,4 +1,4 @@
-package com.example.employeepayrollappdevelopment;
+package com.example.employeepayrollappdevelopment.model;
 
 import jakarta.persistence.*;
 import lombok.*;
