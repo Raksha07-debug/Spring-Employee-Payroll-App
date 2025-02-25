@@ -10,9 +10,9 @@ import org.springframework.context.ApplicationContext;
 public class EmployeepayrollappdevelopmentApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(EmployeepayrollappdevelopmentApplication.class, args);
-		ApplicationContext context= SpringApplication.run(EmployeepayrollappdevelopmentApplication.class,args);
-		log.info("Payroll App  started in '{}' Environment !",context.getEnvironment().getProperty("environment"));
+		ApplicationContext context = SpringApplication.run(EmployeepayrollappdevelopmentApplication.class, args);
+		log.info("Payroll App  started in '{}' Environment !", context.getEnvironment().getProperty("environment"));
+		log.info("Employee payroll DB user is {}", context.getEnvironment().getProperty("spring.datasource.username"));
 	}
 
 }
