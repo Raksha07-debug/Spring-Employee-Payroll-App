@@ -2,12 +2,13 @@ package com.example.employeepayrollappdevelopment.services;
 
 import com.example.employeepayrollappdevelopment.repository.EmployeeRepository;
 import com.example.employeepayrollappdevelopment.model.Employee;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
-
+@Slf4j
 @Service
 public class EmployeeServices {
 
@@ -16,16 +17,20 @@ public class EmployeeServices {
 
     // Create Employee and save it to database.
     public Employee saveEmployee(Employee employee) {
+        log.info("Save the data of employee");
         return employeeRepository.save(employee);
+
     }
 
     // Get Employee by ID.
     public Optional<Employee> getEmployeeById(Long id) {
+        log.info("Fetching employee with ID: {}",id);
         return employeeRepository.findById(id);
     }
 
     // List All Employees in the database 
     public List<Employee> getAllEmployees() {
+        log.info("Fetching all employees");
         return employeeRepository.findAll();
     }
 
@@ -42,9 +47,11 @@ public class EmployeeServices {
     // Delete Employee
     public boolean deleteEmployee(Long id) {
         if (employeeRepository.existsById(id)) {
+            log.info("Deleting employee with id: {}",id);
             employeeRepository.deleteById(id);
             return true;
         }
+        log.warn("Employee with ID {} not found for deletion",id);
         return false;
     }
 }
