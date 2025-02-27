@@ -1,5 +1,6 @@
 package com.example.employeepayrollappdevelopment.exception;
 
+import com.example.employeepayrollappdevelopment.dto.ResponseDto;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;
@@ -14,14 +15,20 @@ import java.util.Map;
 @ControllerAdvice
 public class GlobalExceptionHandler {
     @ExceptionHandler(MethodArgumentNotValidException.class)
-    public ResponseEntity<Map<String,String>>
-    handleValidationExceptions(MethodArgumentNotValidException ex) {
+    public ResponseEntity<ResponseDto> handleMethodArgumentNotValidException(MethodArgumentNotValidException ex){
         Map<String, String> errors = new HashMap<>();
         ex.getBindingResult().getAllErrors().forEach(error -> {
             String fieldName = ((FieldError) error).getField();
             String errorMessage = error.getDefaultMessage();
             errors.put(fieldName, errorMessage);
         });
-        return new ResponseEntity<>(errors, HttpStatus.BAD_REQUEST);
+        ResponseDto responseDTO = new ResponseDto("Validation Error", errors);
+        return new ResponseEntity<>(responseDTO, HttpStatus.BAD_REQUEST);
     }
-}
+    @ExceptionHandler(EmployeeNotFoundException.class)
+    public ResponseEntity<ResponseDto> handleEmployeePayrollException(EmployeeNotFoundException exception){
+        ResponseDto responseDto=new ResponseDto("exception while processing REST request",exception.getMessage());
+        return new ResponseEntity<>(responseDto,HttpStatus.BAD_REQUEST);
+    }
+    }
+
