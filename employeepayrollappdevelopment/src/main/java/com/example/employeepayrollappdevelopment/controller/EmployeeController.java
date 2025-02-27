@@ -26,13 +26,13 @@ public class EmployeeController {
         return ResponseEntity.ok(employee);
     }
 
-    // Get Employee by ID
+    // Get Employee by their  ID
     @GetMapping("/{id}")
     public Optional<Employee> getEmployeeById(@PathVariable Long id) {
         return employeeService.getEmployeeById(id);
     }
 
-    // Get All Employees
+    // Get All Employees from database.
     @GetMapping("/all")
     public List<Employee> getAllEmployees() {
         return employeeService.getAllEmployees();
@@ -40,7 +40,7 @@ public class EmployeeController {
 
     // Update Employee
     @PutMapping("/update/{id}")
-    public ResponseEntity<Employee> updateEmployee(@PathVariable long id,@Valid @RequestBody Employee employeeDTO){
+    public ResponseEntity<Employee> updateEmployee(@PathVariable long id,@Valid @RequestBody EmployeePayrollDTO employeeDTO){
         Employee updateEmployee=employeeService.updateEmployee(id,employeeDTO);
         return ResponseEntity.ok(updateEmployee);
     }
