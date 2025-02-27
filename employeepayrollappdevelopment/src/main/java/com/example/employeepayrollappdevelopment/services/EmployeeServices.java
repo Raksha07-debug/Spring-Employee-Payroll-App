@@ -1,7 +1,9 @@
 package com.example.employeepayrollappdevelopment.services;
 
+import com.example.employeepayrollappdevelopment.dto.EmployeePayrollDTO;
 import com.example.employeepayrollappdevelopment.repository.EmployeeRepository;
 import com.example.employeepayrollappdevelopment.model.Employee;
+import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,8 +18,10 @@ public class EmployeeServices {
     private EmployeeRepository employeeRepository;
 
     // Create Employee and save it to database.
-    public Employee saveEmployee(Employee employee) {
-        log.info("Save the data of employee");
+    public Employee saveEmployee(@Valid EmployeePayrollDTO employeePayrollDTO) {
+        Employee employee= new Employee();
+        employee.setName(employeePayrollDTO.getName());
+        employee.setSalary((int) employeePayrollDTO.getSalary());
         return employeeRepository.save(employee);
 
     }
@@ -35,11 +39,10 @@ public class EmployeeServices {
     }
 
     // Update Employee
-    public Employee updateEmployee(Long id, Employee newEmployeeData) {
+    public Employee updateEmployee(Long id, @Valid EmployeePayrollDTO newEmployeeData) {
         return employeeRepository.findById(id).map(employee -> {
             employee.setName(newEmployeeData.getName());
-            employee.setDepartment(newEmployeeData.getDepartment());
-            employee.setSalary(newEmployeeData.getSalary());
+            employee.setSalary((int)newEmployeeData.getSalary());
             return employeeRepository.save(employee);
         }).orElse(null);
     }

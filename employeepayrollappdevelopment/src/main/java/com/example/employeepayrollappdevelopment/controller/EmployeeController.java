@@ -1,8 +1,11 @@
 package com.example.employeepayrollappdevelopment.controller;
 
+import com.example.employeepayrollappdevelopment.dto.EmployeePayrollDTO;
 import com.example.employeepayrollappdevelopment.model.Employee;
 import com.example.employeepayrollappdevelopment.services.EmployeeServices;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 
@@ -18,8 +21,9 @@ public class EmployeeController {
 
     // Create Employee
     @PostMapping("/add")
-    public Employee addEmployee(@RequestBody Employee employee) {
-        return employeeService.saveEmployee(employee);
+    public ResponseEntity<Employee> createEmployee(@Valid @RequestBody EmployeePayrollDTO employeeDTO){
+        Employee employee=employeeService.saveEmployee(employeeDTO);
+        return ResponseEntity.ok(employee);
     }
 
     // Get Employee by ID
@@ -36,8 +40,9 @@ public class EmployeeController {
 
     // Update Employee
     @PutMapping("/update/{id}")
-    public Employee updateEmployee(@PathVariable Long id, @RequestBody Employee employee) {
-        return employeeService.updateEmployee(id, employee);
+    public ResponseEntity<Employee> updateEmployee(@PathVariable long id,@Valid @RequestBody Employee employeeDTO){
+        Employee updateEmployee=employeeService.updateEmployee(id,employeeDTO);
+        return ResponseEntity.ok(updateEmployee);
     }
 
     // Delete Employee
