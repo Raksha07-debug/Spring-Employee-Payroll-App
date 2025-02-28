@@ -1,8 +1,6 @@
 package com.example.employeepayrollappdevelopment.dto;
-import jakarta.validation.constraints.Max;
-import jakarta.validation.constraints.Min;
-import jakarta.validation.constraints.NotEmpty;
-import jakarta.validation.constraints.Pattern;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import jakarta.validation.constraints.*;
 import lombok.Data; //lombok used to auto generate getter and setter methods.
 import lombok.ToString;
 
@@ -12,16 +10,24 @@ import java.util.List;
 @ToString
 public class EmployeePayrollDTO {
     @NotEmpty(message = "Name cannot be empty")
-    @Pattern(regexp = "^[A-Z][a-zA-Z]{1,}(?: [A-Z][a-zA-Z]{1,})+$", message = "Name must contain both first name and last name, each starting with a capital letter and be at least 2 characters long")
-    public String name;
+    @Pattern(regexp = "^[A-Z]{1}[a-zA-Z]{2,}$", message = "Employee name Invalid")
+    @Min(value = 500, message = "Min Wage should be more than 500")
 
-    @Min(value = 1000, message = "Salary must be at least 1000")
-    @Max(value = 1000000, message = "Salary cannot exceed 1,000,000")
+    public String name;
+    @Pattern(regexp = "male|female", message = "Gender needs to be male or female")
     public int salary;
     public String gender;
+
+
+    @JsonFormat(pattern = "dd MMM yyyy")
+    @NotNull(message = "startDate should Not be Empty")
+    @PastOrPresent(message = "startDate should be past or today's date")
     public LocalDate startDate;
+    @NotBlank(message = "Note cannot be Empty")
     public String note;
+    @NotBlank(message = "profilePic cannot be Empty")
     public String profilePic;
+    @NotNull(message = "department should Not be Empty")
     public List<String> department;
 
 

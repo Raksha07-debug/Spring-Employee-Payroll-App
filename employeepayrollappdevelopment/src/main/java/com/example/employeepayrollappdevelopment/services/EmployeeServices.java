@@ -20,8 +20,8 @@ public class EmployeeServices {
     // Create Employee and save it to database.
     public Employee saveEmployee(@Valid EmployeePayrollDTO employeePayrollDTO) {
         Employee employee= new Employee();
-        employee.setName(employeePayrollDTO.getName());
-        employee.setSalary((int) employeePayrollDTO.getSalary());
+        employee.setName(employeePayrollDTO.name);
+        employee.setSalary((int) employeePayrollDTO.salary);
         return employeeRepository.save(employee);
 
     }
@@ -41,8 +41,8 @@ public class EmployeeServices {
     // Update Employee
     public Employee updateEmployee(Long id, @Valid EmployeePayrollDTO newEmployeeData) {
         return employeeRepository.findById(id).map(employee -> {
-            employee.setName(newEmployeeData.getName());
-            employee.setSalary((int)newEmployeeData.getSalary());
+            employee.setName(newEmployeeData.name);
+            employee.setSalary((int)newEmployeeData.salary);
             return employeeRepository.save(employee);
         }).orElse(null);
     }
