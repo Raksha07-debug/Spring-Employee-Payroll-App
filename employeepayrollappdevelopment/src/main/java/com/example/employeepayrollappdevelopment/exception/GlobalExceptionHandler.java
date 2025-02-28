@@ -36,7 +36,7 @@ public class GlobalExceptionHandler {
     public ResponseEntity<ResponseDto> handleHttpMessageNotReadableException(HttpMessageNotReadableException exception) {
         log.error("Invalid Date Format", exception);
         String message="Exception while processing REST ";
-        ResponseDto responseDTO = new ResponseDto (message, "Should have date in the format dd MMM yyyy");
+        ResponseDto responseDTO = new ResponseDto (message, "Should have date in the format dd MM yyyy");
         return new ResponseEntity<>(responseDTO, HttpStatus.BAD_REQUEST);
     }
 
