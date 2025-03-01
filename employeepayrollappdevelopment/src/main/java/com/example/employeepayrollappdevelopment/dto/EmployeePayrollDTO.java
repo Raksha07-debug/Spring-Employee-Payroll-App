@@ -11,15 +11,18 @@ import java.util.List;
 public class EmployeePayrollDTO {
     @NotEmpty(message = "Name cannot be empty")
     @Pattern(regexp = "^[A-Z]{1}[a-zA-Z]{2,}$", message = "Employee name Invalid")
-    @Min(value = 500, message = "Min Wage should be more than 500")
+//    @NotNull
+//    public  String message;
 
     public String name;
     @Pattern(regexp = "male|female", message = "Gender needs to be male or female")
-    public int salary;
     public String gender;
+    @Min(value = 500, message = "Min Wage should be more than 500")
+
+    public int salary;
 
 
-    @JsonFormat(pattern = "dd MMM yyyy")
+    @JsonFormat(pattern = "dd MM yyyy")
     @NotNull(message = "startDate should Not be Empty")
     @PastOrPresent(message = "startDate should be past or today's date")
     public LocalDate startDate;
