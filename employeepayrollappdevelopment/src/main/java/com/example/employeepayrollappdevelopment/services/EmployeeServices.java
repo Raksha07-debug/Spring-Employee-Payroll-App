@@ -55,6 +55,7 @@ public class EmployeeServices implements IEmployeePayrollService{
         return false;
     }
 
+    //update employee details 
     @Override
     public Employee updateEmployee(long id, @Valid EmployeePayrollDTO newEmployeeDTO){
         Employee existingEmployee = employeeRepository.findById(id)
