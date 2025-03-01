@@ -66,4 +66,7 @@ public class EmployeeServices implements IEmployeePayrollService{
         existingEmployee.updateEmployeePayrollData(newEmployeeDTO);
         return employeeRepository.save(existingEmployee);
 }
+    public List<Employee> getEmployeesByDepartment(String department) {
+        return employeeRepository.findEmployeesByDepartment(department);
+    }
 }

@@ -45,6 +45,11 @@ public class EmployeeController {
         return ResponseEntity.ok(updateEmployee);
     }
 
+    @GetMapping("/department/{department}")
+    public ResponseEntity<List<Employee>> getEmployeesByDepartment(@PathVariable String department) {
+        return ResponseEntity.ok(employeeService.getEmployeesByDepartment(department));
+    }
+
     // Delete Employee
     @DeleteMapping("/delete/{id}")
     public String deleteEmployee(@PathVariable Long id) {

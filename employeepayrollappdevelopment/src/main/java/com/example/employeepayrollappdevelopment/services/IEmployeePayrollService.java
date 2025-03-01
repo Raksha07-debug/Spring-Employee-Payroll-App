@@ -19,6 +19,7 @@ public interface IEmployeePayrollService {
     boolean deleteEmployee(Long id);
 
     Employee updateEmployee(long id, EmployeePayrollDTO employeeDTO);
+    List<Employee> getEmployeesByDepartment(String department);
 
 
 }
